@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Score</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        img.tennis-ball {
+            max-height: 50px;
+            width: auto;
+            margin: 0 10px;
+        }
+    </style>
+
+</head>
+<body>
+<%- include("components/header") %>
+<main class="container mt-4">
+    <div class="row bg-dark text-white p-4 rounded mb-3 align-items-center" id="match-row-1">
+        <div class="col-md-6 d-flex align-items-center flex-column flex-md-row">
+            <span class="me-3 display-6">🏆</span>
+            <strong class="fs-4 text-center text-md-start">DJOKOVIC / ŚWIĄTEK</strong>
+
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center gap-3 flex-column flex-md-row">
+            <button class="btn btn-primary" id="point-player-2">+</button>
+            <span class="badge bg-secondary px-4 py-3 fs-3">5</span>
+            <span class="badge bg-secondary px-4 py-3 fs-3">7</span>
+            <span class="badge bg-secondary px-4 py-3 fs-3">2</span>
+            <span class="badge bg-secondary px-4 py-3 fs-3">40</span>
+        </div>
+    </div>
+
+    <div class="row bg-dark text-white p-4 rounded mb-3 align-items-center flex-column flex-md-row" id="match-row-2">
+        <div class="col-md-6 d-flex align-items-center flex-column flex-md-row" id="name-block-2">
+            <strong class="fs-4 text-center text-md-start">DJOKOVIC / ŚWIĄTEK</strong>
+            <img src="/img/tennis-ball.svg" class="tennis-ball" alt="tennis-ball">
+
+        </div>
+        <div class="col-md-6 col-sm-12 d-flex justify-content-end align-items-center gap-3 flex-wrap flex-md-nowrap" id="score-block-2">
+            <button class="btn btn-primary" id="point-player-2">+</button>
+            <span class="badge bg-secondary px-4 py-3 fs-3">5</span>
+            <span class="badge bg-secondary px-4 py-3 fs-3">7</span>
+            <span class="badge bg-secondary px-4 py-3 fs-3">2</span>
+            <span class="badge bg-secondary px-4 py-3 fs-3">40</span>
+        </div>
+    </div>
+
+
+
+</main>
+<%- include("components/footer") %>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function adjustScoreOrder() {
+        const row = document.getElementById('match-row-2');
+        const scoreBlock = document.getElementById('score-block-2');
+        const nameBlock = document.getElementById('name-block-2');
+
+        if (window.innerWidth < 768) {
+            row.insertBefore(scoreBlock, nameBlock);
+            scoreBlock.classList.remove('justify-content-end');
+            scoreBlock.classList.add('justify-content-center')
+        } else {
+            row.insertBefore(nameBlock, scoreBlock);
+            scoreBlock.classList.remove('justify-content-center')
+            scoreBlock.classList.add('justify-content-end')
+        }
+    }
+
+    window.addEventListener('resize', adjustScoreOrder);
+    window.addEventListener('DOMContentLoaded', adjustScoreOrder);
+</script>
+
+</body>
+</html>
